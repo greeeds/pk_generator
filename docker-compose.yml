@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  pk_generator:
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
+    image: pk_generator
+    container_name: pk_generator
+    environment:
+      TZ: Asia/Shanghai
+#      CHATGPT_PROXY: ""
+      UNIQUE_NAME: "my share token"
+    volumes:
+      - ./file:/home/file
+    network_mode: "host"
