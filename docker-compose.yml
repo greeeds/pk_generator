@@ -5,13 +5,13 @@ services:
     build:
       context: ./
       dockerfile: ./Dockerfile
-    image: pk_generator
+    image: 995762937/pk_generator
     container_name: pk_generator
     environment:
       TZ: Asia/Shanghai
 #      CHATGPT_PROXY: ""
       UNIQUE_NAME: "my share token"
-      POOL_TOKEN: ""
+      POOL_TOKEN: "pk-MzcDq2e8ksaiCfwu630F1AosPKXH4iwc8bNmBH5NJj0"
     volumes:
       - ./file:/home/file
     network_mode: "host"
