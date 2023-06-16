@@ -11,6 +11,7 @@ services:
       TZ: Asia/Shanghai
 #      CHATGPT_PROXY: ""
       UNIQUE_NAME: "my share token"
+      POOL_TOKEN: ""
     volumes:
       - ./file:/home/file
     network_mode: "host"

@@ -12,6 +12,7 @@ def run():
     proxy = getenv('CHATGPT_PROXY', None)
     expires_in = 0
     unique_name = getenv('UNIQUE_NAME', 'my share token')
+    pool_token = getenv('POOL_TOKEN', '')
     current_dir = path.dirname(path.abspath(__file__))
     credentials_file = path.join(current_dir, 'file', 'credentials.txt')
     tokens_file = path.join(current_dir, 'file', 'tokens.txt')
@@ -76,6 +77,7 @@ def run():
 
     data = {
         'share_tokens': '\n'.join([token_info['share_token'] for token_info in token_keys]),
+        'pool_token': pool_token
     }
     resp = requests.post('https://ai.fakeopen.com/pool/update', data=data)
 
