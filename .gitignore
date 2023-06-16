@@ -2,4 +2,5 @@
 ### IntelliJ IDEA ###
 .idea
 file
+bak_file
 auth.py
