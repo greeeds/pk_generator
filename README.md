@@ -1,7 +1,7 @@
 # pk_generator
 auto_pool_token
 
-脚本来自大佬**@pengzhile**的[auto pool token](https://gist.github.com/pengzhile/448bfcfd548b3ae4e665a84cc86c4694)
+脚本来自大佬[pengzhile](https://github.com/pengzhile)的[auto pool token](https://gist.github.com/pengzhile/448bfcfd548b3ae4e665a84cc86c4694)
 
 引用了大佬的 [Pandora](*https://github.com/pengzhile/pandora*) 项目
 
