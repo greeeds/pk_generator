@@ -12,6 +12,7 @@ services:
 #      CHATGPT_PROXY: ""
       UNIQUE_NAME: "my share token"
       POOL_TOKEN: ""
+      ONLY_PK: True
     volumes:
       - ./file:/home/file
     network_mode: "host"
