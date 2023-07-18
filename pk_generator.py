@@ -5,7 +5,7 @@ from os import path, getenv
 
 import requests
 
-from auth import Auth0
+from pandora.openai.auth import Auth0
 
 
 def run():
