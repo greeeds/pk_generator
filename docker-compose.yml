@@ -13,6 +13,7 @@ services:
       UNIQUE_NAME: "my share token"
       POOL_TOKEN: ""
       ONLY_PK: True
+      ONLY_FK: False
     volumes:
       - ./file:/home/file
     network_mode: "host"

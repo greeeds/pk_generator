@@ -14,11 +14,12 @@ def run():
     unique_name = getenv('UNIQUE_NAME', 'my share token')
     pool_token = getenv('POOL_TOKEN', '')
     only_pk = getenv('ONLY_PK', False)
+    only_fk = False if only_pk else getenv('ONLY_FK', False)
     current_dir = path.dirname(path.abspath(__file__))
     credentials_file = path.join(current_dir, 'file', 'credentials.txt')
     tokens_file = path.join(current_dir, 'file', 'tokens.txt')
     share_tokens_file = path.join(current_dir, 'file', 'share_tokens.txt')
-    if only_pk:
+    if only_pk and not only_fk:
         with open(share_tokens_file, 'r', encoding='utf-8') as f:
             share_tokens = f.read().split('\n')
         pool_token_gen(share_tokens, pool_token)
@@ -46,7 +47,7 @@ def run():
         is_fail = False
         for i in range(0, 3):
             try:
-                token_info['token'] = Auth0(username, password, proxy).auth(True)
+                token_info['token'] = Auth0(username, password, proxy).auth(False)
                 print('Login success: {}, {}'.format(username, progress))
                 break
             except Exception as e:
@@ -79,7 +80,8 @@ def run():
     with open(share_tokens_file, 'w', encoding='utf-8') as f:
         for token_info in token_keys:
             f.write('{}\n'.format(token_info['share_token']))
-
+    if only_fk:
+        return
     if count > 100:
         print('too many accounts!')
         return
