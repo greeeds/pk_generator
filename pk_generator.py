@@ -7,19 +7,28 @@ import requests
 
 from pandora.openai.auth import Auth0
 
+FK_AND_PK = '0'
+ONLY_FK = '1'
+ONLY_PK = '2'
+RUN_TYPE_DICT = {
+    FK_AND_PK: 'FK_AND_PK',
+    ONLY_FK: 'ONLY_FK',
+    ONLY_PK: 'ONLY_PK',
+}
+
 
 def run():
     proxy = getenv('CHATGPT_PROXY', None)
     expires_in = 0
     unique_name = getenv('UNIQUE_NAME', 'my share token')
     pool_token = getenv('POOL_TOKEN', '')
-    only_pk = getenv('ONLY_PK', False)
-    only_fk = False if only_pk else getenv('ONLY_FK', False)
+    run_type = getenv('RUN_TYPE', FK_AND_PK)
+    print(RUN_TYPE_DICT[FK_AND_PK] if RUN_TYPE_DICT[run_type] is None else RUN_TYPE_DICT[run_type])
     current_dir = path.dirname(path.abspath(__file__))
     credentials_file = path.join(current_dir, 'file', 'credentials.txt')
     tokens_file = path.join(current_dir, 'file', 'tokens.txt')
     share_tokens_file = path.join(current_dir, 'file', 'share_tokens.txt')
-    if only_pk and not only_fk:
+    if run_type == '01':
         with open(share_tokens_file, 'r', encoding='utf-8') as f:
             share_tokens = f.read().split('\n')
         pool_token_gen(share_tokens, pool_token)
@@ -80,7 +89,7 @@ def run():
     with open(share_tokens_file, 'w', encoding='utf-8') as f:
         for token_info in token_keys:
             f.write('{}\n'.format(token_info['share_token']))
-    if only_fk:
+    if run_type == '10':
         return
     if count > 100:
         print('too many accounts!')

@@ -14,6 +14,8 @@ services:
       POOL_TOKEN: ""
       ONLY_PK: True
       ONLY_FK: False
+      # FK_AND_PK = 0 ONLY_FK = 1 ONLY_PK = 2
+      RUN_TYPE: '1'
     volumes:
       - ./file:/home/file
     network_mode: "host"
